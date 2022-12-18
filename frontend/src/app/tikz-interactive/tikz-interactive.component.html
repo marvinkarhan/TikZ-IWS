@@ -1,4 +1,5 @@
 <textarea name="tikzpicture" id="tikz-code" cols="30" rows="10"></textarea>
-<div id="output-container"></div>
+<div [hidden]="errorMessage | async" id="output-container" #outputContainer></div>
+<pre class="error-message">{{errorMessage | async}}</pre>
 
 <script src="tikz.js" defer></script>
