@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject, fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { TikzService } from './tikz.service';
 
 @Component({
@@ -23,8 +22,6 @@ export class TikzInteractiveComponent implements AfterViewInit {
   private _texOutput = '';
   private errorRegex =
     /(?<=\*\*entering extended mode).*(?=\? Type <return> to proceed)/ms;
-
-  @ViewChild('outputContainer') outputContainer!: ElementRef;
 
   constructor(
     private readonly _tikzService: TikzService,
@@ -44,7 +41,7 @@ export class TikzInteractiveComponent implements AfterViewInit {
     this._texOutput += log + '\n';
     this.errorMessage.next('');
     if (this._texOutput.includes('Emergency stop') && this.content.length > 0) {
-      this.errorMessage.next(this._texOutput.match(this.errorRegex)?.[0] || '');
+      this.errorMessage.next(this._texOutput.match(this.errorRegex)?.[0].trim() || '');
     }
     this._cd.detectChanges();
   }
