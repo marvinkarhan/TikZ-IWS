@@ -1,0 +1,5 @@
+<div class="question">
+  <span *ngIf="questionNr" class="question-number">Aufgabe {{questionNr}}:</span>
+  {{question}}
+</div>
+<app-tikz-interactive [solution]="solution"></app-tikz-interactive>
