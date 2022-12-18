@@ -1,1 +1,8 @@
-<app-tikz-interactive></app-tikz-interactive>
+<div class="content">
+  <app-task
+    class="task"
+    *ngFor="let task of tasks; index as i"
+    [question]="task.question"
+    [questionNr]="i + 1"
+  ></app-task>
+</div>

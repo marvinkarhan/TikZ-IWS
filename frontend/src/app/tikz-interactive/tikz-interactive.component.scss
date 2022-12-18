@@ -8,6 +8,7 @@
 
 .output {
   display: flex;
+  border: 1px solid black;
 
   #output-container {
     margin: auto;
@@ -15,7 +16,7 @@
 
   .error-message {
     margin: 0;
-    padding: 0 1em;
+    padding: 1em;
     color: #ff0033;
     background-color: #ffcccc;
     font-weight: bold;
