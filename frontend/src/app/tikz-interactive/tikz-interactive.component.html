@@ -1,4 +1,12 @@
-<textarea name="tikzpicture" id="tikz-code" cols="30" rows="10"></textarea>
+<ngx-codemirror
+  [(ngModel)]="content"
+  (ngModelChange)="update($event)"
+  [options]="{
+    lineNumbers: true,
+    theme: 'material',
+    mode: 'text/x-stex'
+  }"
+></ngx-codemirror>
 <div [hidden]="errorMessage | async" id="output-container" #outputContainer></div>
 <pre class="error-message">{{errorMessage | async}}</pre>
 
