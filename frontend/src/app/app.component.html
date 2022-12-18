@@ -4,5 +4,6 @@
     *ngFor="let task of tasks; index as i"
     [question]="task.question"
     [questionNr]="i + 1"
+    [solution]="task.solution"
   ></app-task>
 </div>

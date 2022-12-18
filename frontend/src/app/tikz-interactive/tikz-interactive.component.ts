@@ -15,13 +15,29 @@ import { TikzService } from './tikz.service';
   styleUrls: ['./tikz-interactive.component.scss'],
 })
 export class TikzInteractiveComponent implements AfterViewInit {
+
   @Input() public content = '';
+  private _solution: string | null = null;
+  @Input() public set solution (value: string | null) {
+    if (value) {
+      this._solution = atob(value);
+    } else {
+      this._solution = null;
+    }
+  }
+  public get solution() {
+    console.warn('get solution: ', this._solution)
+    return this._solution;
+  }
 
   public output!: HTMLElement | null;
   public errorMessage = new BehaviorSubject<string>('');
+  public showSolution = false;
   private _texOutput = '';
   private errorRegex =
     /(?<=\*\*entering extended mode).*(?=\? Type <return> to proceed)/ms;
+
+  @ViewChild('solution') solutionEl!: ElementRef;
 
   constructor(
     private readonly _tikzService: TikzService,
@@ -35,6 +51,8 @@ export class TikzInteractiveComponent implements AfterViewInit {
       this.parseError(str);
       log(str);
     };
+
+    this.solutionEl.nativeElement.innerHTML = this.solution;
   }
 
   parseError(log: string) {

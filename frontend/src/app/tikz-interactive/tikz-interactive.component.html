@@ -11,6 +11,8 @@
 <div class="output">
   <div [hidden]="errorMessage | async" id="output-container"></div>
   <pre [hidden]="!(errorMessage | async)"class="error-message">{{errorMessage | async}}</pre>
+  <div *ngIf="solution" [style.opacity]="showSolution ? 1 : 0" class="solution" #solution>{{solution}}</div>
+  <button *ngIf="solution" class="solution-toggle" (click)="showSolution = !showSolution">Show Solution</button>
 </div>
 
 <script src="tikz.js" defer></script>
