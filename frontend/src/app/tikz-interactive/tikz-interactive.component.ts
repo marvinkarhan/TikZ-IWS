@@ -35,7 +35,7 @@ export class TikzInteractiveComponent implements AfterViewInit {
   public showSolution = false;
   private _texOutput = '';
   private errorRegex =
-    /(?<=\*\*entering extended mode).*(?=\? Type <return> to proceed)/ms;
+    /\*\*entering extended mode.*\? Type <return> to proceed/ms;
 
   @ViewChild('solution') solutionEl!: ElementRef;
 
