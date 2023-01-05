@@ -1,6 +1,15 @@
 Aufgabe:
+
+Teil 1:
 Zeichne das Haus vom Nikolaus (Reihenfolge der Striche egal) in ein Koordinatensystem.
 Das Dach soll eine andere Farbe als der Rest des Hauses haben.
+
+Teil 2:
+Wie ihr alle wisst wird das Haus vom Nikolaus in einer einzelnen Linie gezeichnet,
+verändere den Code aus Teil 1 so, dass nurnoch ein \draw Befehl benötigt wird.
+Auf verschiedene Farben für das Dach und den Rest des Hauses kann verzichtet werden.
+
+Tipp: Linien können mit weiteren -- zusammengefügt werden.
 
 Lösung:
 \begin{tikzpicture}
