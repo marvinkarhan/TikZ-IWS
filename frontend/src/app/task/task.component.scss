@@ -1,5 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
 .question {
-  font-size: 1.5em;
-  font-weight: bold;
   margin-bottom: .5em;
+  padding: 0 1rem;
+
+  .question-number {
+    margin-top: 0;
+  }
+}
+
+app-tikz-interactive {
+  flex: 1;
 }

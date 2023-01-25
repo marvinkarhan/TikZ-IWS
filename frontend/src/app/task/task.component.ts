@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Task } from './task.interface';
 
 @Component({
   selector: 'app-task',
@@ -7,9 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TaskComponent {
 
-  @Input() public question = 'Das ist eine Frage?';
   @Input() public questionNr: number | null = null;
-  @Input() public solution: string | null = null;
+  @Input() public task: Task | null = null;
 
   constructor() { }
 }

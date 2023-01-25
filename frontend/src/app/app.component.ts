@@ -9,4 +9,5 @@ import tasksJSON from '../assets/tasks.json';
 export class AppComponent {
   public title = 'IWS';
   public tasks = tasksJSON.tasks;
+  public index = 0;
 }

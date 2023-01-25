@@ -15,10 +15,16 @@ import { TikzService } from './tikz.service';
   styleUrls: ['./tikz-interactive.component.scss'],
 })
 export class TikzInteractiveComponent implements AfterViewInit {
-
-  @Input() public content = '';
+  private _content = '';
+  @Input() public set content(value: string) {
+    this._content = value;
+    setTimeout(() => this.update(value), 0);
+  }
+  public get content() {
+    return this._content;
+  }
   private _solution: string | null = null;
-  @Input() public set solution (value: string | null) {
+  @Input() public set solution(value: string | null) {
     if (value) {
       this._solution = atob(value);
     } else {
@@ -26,11 +32,10 @@ export class TikzInteractiveComponent implements AfterViewInit {
     }
   }
   public get solution() {
-    console.warn('get solution: ', this._solution)
     return this._solution;
   }
 
-  public output!: HTMLElement | null;
+  // public output!: HTMLElement | null;
   public errorMessage = new BehaviorSubject<string>('');
   public showSolution = false;
   private _texOutput = '';
@@ -38,6 +43,7 @@ export class TikzInteractiveComponent implements AfterViewInit {
     /\*\*entering extended mode.*\? Type <return> to proceed/ms;
 
   @ViewChild('solution') solutionEl!: ElementRef;
+  @ViewChild('output') output!: ElementRef;
 
   constructor(
     private readonly _tikzService: TikzService,
@@ -45,7 +51,7 @@ export class TikzInteractiveComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.output = document.getElementById('output-container');
+    // this.output = document.getElementById('output-container');
     const log = console.log;
     console.log = (str) => {
       this.parseError(str);
@@ -59,19 +65,22 @@ export class TikzInteractiveComponent implements AfterViewInit {
     this._texOutput += log + '\n';
     this.errorMessage.next('');
     if (this._texOutput.includes('Emergency stop') && this.content.length > 0) {
-      this.errorMessage.next(this._texOutput.match(this.errorRegex)?.[0].trim() || '');
+      this.errorMessage.next(
+        this._texOutput.match(this.errorRegex)?.[0].trim() || ''
+      );
     }
     this._cd.detectChanges();
   }
 
   update(content: string) {
+    console.warn(this.output)
     if (!this.output) return;
     this._texOutput = '';
     const s = document.createElement('script');
     s.setAttribute('type', 'text/tikz');
     s.textContent = content;
-    this.output.innerHTML = '';
-    this.output.appendChild(s);
+    this.output.nativeElement.innerHTML = '';
+    this.output.nativeElement.appendChild(s);
     this._tikzService.process_tikz(s);
   }
 }

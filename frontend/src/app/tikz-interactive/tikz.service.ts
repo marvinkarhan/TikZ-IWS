@@ -15,7 +15,10 @@ export class TikzService {
 
   constructor() { }
 
-  public process_tikz(s: HTMLScriptElement) {
+  public async process_tikz(s: HTMLScriptElement) {
+    while(typeof window.process_tikz !== 'function') {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
     window.process_tikz(s);
   }
 }
