@@ -4,9 +4,9 @@ import {
   Component,
   ElementRef,
   Input,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
-import { BehaviorSubject, fromEvent } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { TikzService } from './tikz.service';
 
 @Component({
@@ -72,7 +72,19 @@ export class TikzInteractiveComponent implements AfterViewInit {
     this._cd.detectChanges();
   }
 
+  private _debounce(fn: any, ms = 500) {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn.apply(this, args), ms);
+    };
+  };
+
   update(content: string) {
+    this._debounce(this._update)(content);
+  }
+
+  private _update(content: string) {
     console.warn(this.output)
     if (!this.output) return;
     this._texOutput = '';
