@@ -1,27 +1,27 @@
 Aufgabe:
 
-Teil 1:
+<b>Teil 1:</b>
 Zeichne das Haus vom Nikolaus (Reihenfolge der Striche egal) in ein Koordinatensystem.
 Das Dach soll eine andere Farbe als der Rest des Hauses haben.
 
-Teil 2:
+<b>Teil 2:</b>
 Wie ihr alle wisst wird das Haus vom Nikolaus in einer einzelnen Linie gezeichnet,
 verändere den Code aus Teil 1 so, dass nurnoch ein \draw Befehl benötigt wird.
 Auf verschiedene Farben für das Dach und den Rest des Hauses kann verzichtet werden.
 
-Tipp: Linien können mit weiteren -- zusammengefügt werden.
+<b>Tipp:</b> Linien können mit weiteren -- zusammengefügt werden.
 
 Lösung:
 \begin{tikzpicture}
-\draw grid (5,5); 
-\draw [blue] (1,0) -- (1, 3);
-\draw [blue] (4,0) -- (4, 3);
-\draw [blue] (1,0) -- (4, 0);
-\draw [blue] (1,3) -- (4, 3);
-\draw [red] (1,3) -- (2.5, 5);
-\draw [red] (4,3) -- (2.5, 5);
-\draw [blue] (1,0) -- (4, 3);
-\draw [blue] (4,0) -- (1, 3);
+  \draw grid (5,5); 
+  \draw [blue] (1,0) -- (1, 3);
+  \draw [blue] (4,0) -- (4, 3);
+  \draw [blue] (1,0) -- (4, 0);
+  \draw [blue] (1,3) -- (4, 3);
+  \draw [red] (1,3) -- (2.5, 5);
+  \draw [red] (4,3) -- (2.5, 5);
+  \draw [blue] (1,0) -- (4, 3);
+  \draw [blue] (4,0) -- (1, 3);
 \end{tikzpicture}
 
 was aufs cheatsheet muss:
