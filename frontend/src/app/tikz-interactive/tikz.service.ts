@@ -16,6 +16,7 @@ export class TikzService {
   constructor() { }
 
   public async process_tikz(s: HTMLScriptElement) {
+    // Wait for tikzjax to be loaded
     while(typeof window.process_tikz !== 'function') {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }

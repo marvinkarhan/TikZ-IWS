@@ -19,7 +19,6 @@ export class TikzInteractiveComponent implements AfterViewInit {
   private _content = '';
   @Input() public set content(value: string) {
     this._content = value;
-    setTimeout(() => this.update(value), 0);
   }
   public get content() {
     return this._content;
@@ -100,13 +99,12 @@ export class TikzInteractiveComponent implements AfterViewInit {
     };
   }
 
-  update(content: string) {
-    this._debounce(this._update)(content);
+  update(content?: string) {
+    this._debounce(this._update)(content || this.content);
   }
 
   private _update(content: string) {
     if (!this.output) return;
-    console.warn('write to tikz: ', content)
     this._texOutput = '';
     const s = document.createElement('script');
     s.setAttribute('type', 'text/tikz');
