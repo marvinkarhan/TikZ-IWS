@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -15,7 +16,7 @@ import { TikzService } from './tikz.service';
   templateUrl: './tikz-interactive.component.html',
   styleUrls: ['./tikz-interactive.component.scss'],
 })
-export class TikzInteractiveComponent implements AfterViewInit {
+export class TikzInteractiveComponent implements OnInit, AfterViewInit {
   private _content = '';
   @Input() public set content(value: string) {
     this._content = value;
@@ -23,6 +24,7 @@ export class TikzInteractiveComponent implements AfterViewInit {
   public get content() {
     return this._content;
   }
+
   private _solution: string | null = null;
   @Input() public set solution(value: string | null) {
     if (value) {
@@ -34,6 +36,8 @@ export class TikzInteractiveComponent implements AfterViewInit {
   public get solution() {
     return this._solution;
   }
+
+  @Input() public id: number | undefined = undefined;
 
   private _errorMessage$$ = new BehaviorSubject<string>('');
   public errorMessage$ = this._errorMessage$$.pipe(
@@ -70,6 +74,16 @@ export class TikzInteractiveComponent implements AfterViewInit {
     private _cd: ChangeDetectorRef
   ) {}
 
+  ngOnInit(): void {
+    // read from local storage if available
+    if (this.id !== undefined) {
+      const code = localStorage.getItem(`tikz-code-${this.id}`);
+      if (code) {
+        this.content = code;
+      }
+    }
+  }
+
   ngAfterViewInit(): void {
     const log = console.log;
     console.log = (str) => {
@@ -105,6 +119,9 @@ export class TikzInteractiveComponent implements AfterViewInit {
 
   private _update(content: string) {
     if (!this.output) return;
+    if (this.id !== undefined) {
+      localStorage.setItem(`tikz-code-${this.id}`, content);
+    }
     this._texOutput = '';
     const s = document.createElement('script');
     s.setAttribute('type', 'text/tikz');
