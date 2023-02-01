@@ -39,13 +39,13 @@
     <pre [hidden]="!(errorMessage$ | async)" class="error-message">{{
       errorMessage$ | async
     }}</pre>
-    <div
+    <!-- <div
       *ngIf="solution"
       [style.opacity]="showSolution ? 1 : 0"
       class="solution"
       #solution
     >
       {{ solution }}
-    </div>
+    </div> -->
   </div>
 </div>

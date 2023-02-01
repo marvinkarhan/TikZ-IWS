@@ -130,6 +130,8 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     this._texOutput = '';
     const s = document.createElement('script');
     s.setAttribute('type', 'text/tikz');
+    // add tikzlibarys
+    s.setAttribute('data-tikz-libraries', 'positioning,shapes');
     s.textContent = content;
     this.output.nativeElement.innerHTML = '';
     this.output.nativeElement.appendChild(s);
