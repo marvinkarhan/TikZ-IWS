@@ -121,18 +121,15 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
   }
 
   private _update(content: string) {
-    console.warn('process_tikz1')
     if (!this.output) return;
     if (this.id !== undefined) {
       localStorage.setItem(`tikz-code-${this.id}`, content);
     }
-    console.warn('process_tikz2')
     if (!this._validateParentheses(content)) {
       this._errorMessage$$.next('Invalid parentheses');
       return;
     }
     this._errorMessage$$.next('');
-    console.warn('process_tikz3')
     this._texOutput = '';
     const s = document.createElement('script');
     s.setAttribute('type', 'text/tikz');
@@ -144,7 +141,6 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     this.output.nativeElement.innerHTML = '';
     this.output.nativeElement.appendChild(s);
     this._tikzService.process_tikz(s);
-    console.warn('process_tikz4')
   }
 
   private _validateParentheses(str: string) {

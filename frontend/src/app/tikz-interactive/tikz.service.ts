@@ -20,7 +20,6 @@ export class TikzService {
     while(typeof window.process_tikz !== 'function') {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
-    console.warn('process_tikz', s)
     window.process_tikz(s);
   }
 }
