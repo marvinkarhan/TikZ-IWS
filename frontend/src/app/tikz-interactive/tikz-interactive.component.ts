@@ -125,10 +125,6 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     if (this.id !== undefined) {
       localStorage.setItem(`tikz-code-${this.id}`, content);
     }
-    if (!this._validateParentheses(content)) {
-      this._errorMessage$$.next('Invalid parentheses');
-      return;
-    }
     this._errorMessage$$.next('');
     this._texOutput = '';
     const s = document.createElement('script');
@@ -141,28 +137,5 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     this.output.nativeElement.innerHTML = '';
     this.output.nativeElement.appendChild(s);
     this._tikzService.process_tikz(s);
-  }
-
-  private _validateParentheses(str: string) {
-    if (str.length < 2) {
-      return false;
-    }
-    const parenthesesMap: { [key: string]: string } = {
-      '{': '}',
-      '(': ')',
-      '[': ']',
-    };
-    const stack: string[] = [];
-    let char: string | undefined;
-    for (let i = 0; i < str.length; i++) {
-      if (Object.keys(parenthesesMap).includes(str[i])) {
-        stack.push(str[i]);
-      } else if (Object.values(parenthesesMap).includes(str[i])) {
-        if ((char = stack.pop()) && parenthesesMap[char] !== str[i]) {
-          return false;
-        }
-      }
-    }
-    return stack.length === 0;
   }
 }

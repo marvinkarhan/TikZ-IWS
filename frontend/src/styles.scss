@@ -13,3 +13,10 @@ body {
 .CodeMirror {
   height: 100%!important;
 }
+
+// fix generated svg styles
+#output-container {
+  svg {
+    overflow: visible;
+  }
+}
