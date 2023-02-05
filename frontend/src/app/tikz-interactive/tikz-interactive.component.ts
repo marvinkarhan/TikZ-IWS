@@ -37,6 +37,8 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     return this._solution;
   }
 
+  @Input() public templateCode = '';
+
   @Input() public id: number | undefined = undefined;
 
   private _errorMessage$$ = new BehaviorSubject<string>('');
@@ -137,5 +139,12 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
     this.output.nativeElement.innerHTML = '';
     this.output.nativeElement.appendChild(s);
     this._tikzService.process_tikz(s);
+  }
+
+  reset() {
+    if (confirm('Are you sure you want to reset?') && this.id !== undefined && this.templateCode) {
+      localStorage.removeItem(`tikz-code-${this.id}`);
+      this.content = this.templateCode;
+    }
   }
 }

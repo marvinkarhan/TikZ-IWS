@@ -36,6 +36,11 @@
     &.active {
       border-bottom: 2px solid #FAF9F6;
     }
+
+    &.reset-code-button svg {
+      margin-left: 6px;
+      stroke: white;
+    }
   }
 }
 

@@ -1,9 +1,6 @@
 <div class="code">
   <div class="code-header header">
-    <button
-      class="run-code-button header-button"
-      (click)="update()"
-    >
+    <button class="run-code-button header-button" (click)="update()">
       <span>Run</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +9,30 @@
         viewBox="0 0 24 24"
       >
         <path fill="currentColor" d="M8 19V5l11 7Z"></path>
+      </svg>
+    </button>
+    <button class="reset-code-button header-button" (click)="reset()">
+      <span>Reset</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="800px"
+        height="800px"
+        viewBox="0 0 21 21"
+      >
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          stroke="currentColor"
+          transform="matrix(0 1 1 0 2.5 2.5)"
+        >
+          <path
+            d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"
+          />
+          <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
+        </g>
       </svg>
     </button>
   </div>
@@ -27,10 +48,18 @@
 </div>
 <div class="output">
   <div class="output-header header">
-    <button class="preview-button header-button" (click)="showSolution = false" [class.active]="showSolution === false">
+    <button
+      class="preview-button header-button"
+      (click)="showSolution = false"
+      [class.active]="showSolution === false"
+    >
       <span>Preview</span>
     </button>
-    <button class="preview-button header-button" (click)="showSolution = true" [class.active]="showSolution === true">
+    <button
+      class="preview-button header-button"
+      (click)="showSolution = true"
+      [class.active]="showSolution === true"
+    >
       <span>Solution</span>
     </button>
   </div>
