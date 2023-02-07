@@ -12,7 +12,16 @@
   }
 
   .question-description {
-    white-space: pre;
+    white-space: pre-wrap;
+
+    ::ng-deep ul {
+      // change bullet color
+      li::before, li::marker {
+        color: #4a86e8;
+      }
+      margin: 0;
+      padding: 0 0 0 1.5em;
+    }
   }
 }
 

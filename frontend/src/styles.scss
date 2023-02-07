@@ -5,7 +5,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background-color: #B6BDB9;
+  background-color: #d6eefe;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -15,7 +15,7 @@ body {
 }
 
 // fix generated svg styles
-#output-container {
+.output {
   svg {
     overflow: visible;
   }

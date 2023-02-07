@@ -94,7 +94,9 @@ export class TikzInteractiveComponent implements OnInit, AfterViewInit {
       log(str);
     };
 
-    this.solutionEl.nativeElement.innerHTML = this.solution;
+    if (this.solution) {
+      this.solutionEl.nativeElement.innerHTML = this.solution;
+    }
   }
 
   parseError(log: string) {

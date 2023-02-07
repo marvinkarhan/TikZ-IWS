@@ -1,6 +1,6 @@
 <ng-container *ngIf="task">
   <div class="question">
-    <h2 *ngIf="questionNr" class="question-number">Aufgabe {{questionNr}}</h2>
+    <h2 *ngIf="questionNr" class="question-number">Aufgabe {{questionNr}} - {{task.title}}</h2>
     <p *ngIf="task.question" class="question-description" [innerHtml]="task.question"></p>
   </div>
   <app-tikz-interactive [id]="task.id" [solution]="task.solution" [content]="task.code || ''" [templateCode]="task.code"></app-tikz-interactive>
